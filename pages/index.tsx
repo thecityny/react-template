@@ -1,7 +1,7 @@
 import React from "react";
-import SiteMetadata from "./components/Helmet";
-import { Footer, Header } from "./components/HeaderFooter";
-import { meta } from "./data/meta";
+import SiteMetadata from "../components/Helmet";
+import { Footer, Header } from "../components/HeaderFooter";
+import { meta } from "../data/meta";
 
 const Home = () => (
   <article>
