@@ -14,7 +14,7 @@ const SiteMetadata = () => {
   return (
     <Head>
       <title>{meta.seo_headline}</title>
-      <meta charset="utf-8" />
+      <meta charSet="utf-8" />
       <meta name="theme-color" content="#000000" />
       <meta name="description" content={meta.seo_description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

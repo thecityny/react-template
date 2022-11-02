@@ -1,5 +1,4 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -9,8 +8,4 @@ const nextConfig = {
 
     return config;
   },
-  reactStrictMode: true,
-  swcMinify: true,
 };
-
-module.exports = nextConfig;
