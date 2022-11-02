@@ -11,6 +11,36 @@ const SiteMetadata = () => {
       : "";
   const absoluteUrl = origin + router.asPath;
   const socialImageUrl = `${absoluteUrl}${meta.social_image}`;
+
+  const structuredData = {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    headline: meta.seo_headline,
+    image: {
+      "@type": "ImageObject",
+      contentUrl: socialImageUrl,
+      url: socialImageUrl,
+      representativeOfPage: true,
+    },
+    dateCreated: meta.pub_date | new Date(),
+    datePublished: meta.pub_date | new Date(),
+    dateModified: meta.update_date | new Date(),
+    mainEntityOfPage: absoluteUrl,
+    description: meta.seo_description,
+    publisher: {
+      "@type": "Organization",
+      name: meta.site_name,
+      url: "https://www.thecity.nyc/",
+    },
+    author: meta.byline.map(
+      (author) => `{
+            "name": "${author.name}",
+            "url": "${author.url}",
+            "@type": "Person"
+          }`
+    ),
+  };
+
   return (
     <Head>
       <title>{meta.seo_headline}</title>
@@ -32,38 +62,10 @@ const SiteMetadata = () => {
       <meta property="twitter:url" content={absoluteUrl} />
       <meta property="twitter:image" content={socialImageUrl} />
       <meta property="twitter:card" content="summary_large_image" />
-      <script type="application/ld+json">
-        {`
-            {
-            "@context": "http://schema.org",
-            "@type": "NewsArticle",
-            "headline": "${meta.seo_headline}",
-            "image": {
-                "@type": "ImageObject",
-                "contentUrl": "${socialImageUrl}",
-                "url": "${socialImageUrl}",
-                "representativeOfPage": true
-            },
-            "dateCreated":  "${meta.pub_date | new Date()}",
-            "datePublished":  "${meta.pub_date | new Date()}",
-            "dateModified":  "${meta.update_date | new Date()}",
-            "mainEntityOfPage":  "${absoluteUrl}",
-            "description":  "${meta.seo_description}",
-            "publisher": {
-                "@type": "Organization",
-                "name":  "${meta.site_name}",
-                "url": "https://www.thecity.nyc/"
-            },
-            "author": [ ${meta.byline.map(
-              (author) => `{
-                    "name": "${author.name}",
-                    "url": "${author.url}",
-                    "@type": "Person"
-                  }`
-            )}
-            ]
-        }`}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
     </Head>
   );
 };
