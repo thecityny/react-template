@@ -1,18 +1,3 @@
-/** @type {import('next').NextConfig} */
-
-module.exports = {
-  reactStrictMode: true,
-  swcMinify: true,
-
-  webpack(config) {
-    const fileLoaderRule = config.module.rules.find(
-      (rule) => rule.test && rule.test.test(".svg")
-    );
-    fileLoaderRule.exclude = /\.svg$/;
-    config.module.rules.push({
-      test: /\.svg$/,
-      loader: require.resolve("@svgr/webpack"),
-    });
-    return config;
-  },
-};
+// next.config.js
+const withSvgr = require("@newhighsco/next-plugin-svgr");
+module.exports = withSvgr();
