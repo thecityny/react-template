@@ -1,11 +1,3 @@
-module.exports = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
-    });
-
-    return config;
-  },
-};
+// next.config.js
+const withSvgr = require("@newhighsco/next-plugin-svgr");
+module.exports = withSvgr();

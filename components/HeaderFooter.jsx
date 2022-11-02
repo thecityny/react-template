@@ -1,10 +1,10 @@
 import React from "react";
 
-import Logo from "../public/assets/images/logo.svg";
-import LogoSmall from "../public/assets/images/logo-small.svg";
-import TwitterIcon from "../public/assets/images/social-icons/twitter.svg";
-import InstagramIcon from "../public/assets/images/social-icons/instagram.svg";
-import FacebookIcon from "../public/assets/images/social-icons/facebook.svg";
+import { ReactComponent as Logo } from "../public/assets/images/logo.svg";
+import { ReactComponent as LogoSmall } from "../public/assets/images/logo-small.svg";
+import { ReactComponent as TwitterIcon } from "../public/assets/images/social-icons/twitter.svg";
+import { ReactComponent as InstagramIcon } from "../public/assets/images/social-icons/instagram.svg";
+import { ReactComponent as FacebookIcon } from "../public/assets/images/social-icons/facebook.svg";
 
 export const Header = () => (
   <nav className="nav">
