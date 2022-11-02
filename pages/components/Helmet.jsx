@@ -1,12 +1,18 @@
 import React from "react";
+import Head from "next/head";
 import { meta } from "../data/meta";
+import { useRouter } from "next/router";
 
-export const SiteMetadata = () => {
-  const absoluteUrl = window.location.href;
+const SiteMetadata = () => {
+  const router = useRouter();
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "";
+  const absoluteUrl = origin + router.asPath;
   const socialImageUrl = `${absoluteUrl}${meta.social_image}`;
   return (
-    <>
-      <html lang="en" />
+    <Head>
       <title>{meta.seo_headline}</title>
       <meta charset="utf-8" />
       <meta name="theme-color" content="#000000" />
@@ -58,6 +64,8 @@ export const SiteMetadata = () => {
             ]
         }`}
       </script>
-    </>
+    </Head>
   );
 };
+
+export default SiteMetadata;
